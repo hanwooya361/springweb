@@ -37,7 +37,7 @@ public class BoardController {
     }
 
     // [2] 전체조회 Controller 
-    @GetMapping("/board/findAll")
+    @GetMapping("/board/findall")
     public ArrayList<BoardDto> findAll( ){
         ArrayList<BoardDto> result = bd.findAll();
         return result;
