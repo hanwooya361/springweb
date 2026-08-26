@@ -32,3 +32,13 @@ WAS(Web Application Server)
     - Web Server는 정적 컨텐츠(html.css.script) 제공 하지만 동적 컨텐츠(jsp, servlet)는 요청(Web Container)
     - WAS = Web Server + Web Container
     - Controller 같은 기능 수행
+
+* 어노테이션:
+1	@SpringBootApplication	Spring 실행할 때 spring에 필요한 기본세팅( 1.내장톰캣지원 2. 서블릿자동등록 )
+2	@RestController	"Spring 에서는 서블릿을 상속이 아닌 @Controller 어노테이션으로 지원( HTTP )
++ RestController ( HTTP content-tpye 자동으로 application/json 세팅 )"
+3	@PostMapping( "/board/save" )	만약에 HTTP 요청이 POST 이면 해당 메소드로 연결 + URL만들기(중복불가능)
+4	@GetMapping( "/board/findall" )	만약에 HTTP 요청이 GET 이면 해당 메소드로 연결
+5	@PutMapping( "/board/update" )	만약에 HTTP 요청이 PUT 이면 해당 메소드로 연결
+6	@DeleteMapping( "/board/delete" )	만약에 HTTP 요청이 DELETE 이면 해당 메소드로 연결
+*	HTTP 테스트는 Talend API / POSTMAN 에서 진행!
