@@ -24,23 +24,22 @@ import org.springframework.web.bind.annotation.RequestParam;
         1.  @PostMapping("/URL"): HTTP 메소드중에 POST 메소드 매핑/연결/대응 어노테이션 
 */
 
-@Controller
+
+ 	
+@RestController
 public class BoardController {
-    //[*] MVC패턴 흐름의 dao 싱글톤 호출
     private BoardDao bd = BoardDao.getInstance();
-    // [1] 등록 Controller
-    @PostMapping("/board/save")   
+    // [1] 등록
+    @PostMapping( "/board/save" )
     public boolean save( BoardDto boardDto ){
-        boolean result = bd.save( boardDto ); // view에게 전달받은 매개변수을 dao에게전달
-        return result; // dao에게 받은 결과을 view 반환
+        boolean result = bd.save(boardDto);
+        return result;
     }
 
-    // [2] 
+    // [2] 전체조회 Controller 
     @GetMapping("/board/findAll")
-     public ArrayList<BoardDto> findAll( ){
+    public ArrayList<BoardDto> findAll( ){
         ArrayList<BoardDto> result = bd.findAll();
         return result;
     }
-    
-
-}
+} // class end 

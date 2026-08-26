@@ -18,7 +18,10 @@ repositories {
 }
 
 dependencies {
+	// 1. springboot
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	// 2. mysql
+	runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
