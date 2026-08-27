@@ -42,3 +42,13 @@ WAS(Web Application Server)
 5	@PutMapping( "/board/update" )	만약에 HTTP 요청이 PUT 이면 해당 메소드로 연결
 6	@DeleteMapping( "/board/delete" )	만약에 HTTP 요청이 DELETE 이면 해당 메소드로 연결
 *	HTTP 테스트는 Talend API / POSTMAN 에서 진행!
+
+스프링 프로젝트내 
+    src->main->java-> 자바파일(controller등) = 서블릿 (동작서버/웹컨테이너)
+        src->main->java->example->day02->BoardController->@GetMapping("/board/findall")
+        통신경로: http://127.0.0.1:8080/board/findall
+        
+    src->main->resouces->static(html/css/js등)-> 정적파일/웹서버
+        src->main->resouces->static->day02->index.html파일생성
+        통신경로는 static 이하부터 작성
+        통신경로: http://127.0.0.1:8080/day02/index.html
