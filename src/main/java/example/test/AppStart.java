@@ -14,4 +14,3 @@ public class AppStart {
         // 4. 실행 확인: http://localhost:8080
     }
 }
-    

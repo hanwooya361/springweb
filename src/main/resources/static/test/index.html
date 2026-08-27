@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Page Title</title>
+    <link rel='stylesheet' href='main.css'>
+</head>
+<body>
+    <!-- 스프링서버 실행 후: http://127.0.0.1:8080/test/index.html -->
+    <h3>대기명단 관리 프로그램</h3>
+
+    <div>
+        연락처: <input type="text" class="pn"/> <br/> <!--input입력상자, br줄바꿈, class: 마크업 식별자(복수), id: 마크업 식별자(단일)-->
+        인원수: <input type="text" class="num"/> <br/>
+        <button onclick="listSave()"> 등록 </button><!--onClick: "JS함수": 해당 버튼 클릭 시 JS함수 실행-->
+    </div>
+
+    <div>
+        <table border="1"> <!--테이블-->
+            <thead><!--제목구역-->
+                <tr><!--행-->
+                    <th>번호</th><!--제목셀(1칸)-->
+                    <th>연락처</th>
+                    <th>인원수</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody class="boardList"><!--본문구역-->
+                <tr>
+                    <td>1</td><!--데이터셀(1칸)-->
+                    <td>유재석</td><!--데이터셀(1칸)-->
+                    <td>안녕하세요</td><!--데이터셀(1칸)-->
+                    <td><button onclick="listUpdate()">수정</button><button onclick="listDlete()">삭제</button></td><!--데이터셀(1칸)-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+     
+ 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
+
+<!--
+    스프링 프로젝트내 
+    src->main->java-> 자바파일(controller등) = 서블릿 (동작서버/웹컨테이너)
+        src->main->java->example->day02->BoardController->@GetMapping("/board/findall")
+        통신경로: http://127.0.0.1:8080/board/findall
+        
+    src->main->resouces->static(html/css/js등)-> 정적파일/웹서버
+        src->main->resouces->static->day02->index.html파일생성
+        통신경로는 static 이하부터 작성
+        통신경로: http://127.0.0.1:8080/day02/index.html
+
+    HTTP: 프로토콜/규약/규칙, GET/POST/PUT/DELETE, http://ip:port/경로
+        -> 전화 통신 규칙, 010-0000-0000
+    HTTP: 통신 방법/도구: 1) 브라우저 2) TalendAPI 3) JS (AXIOS) 
+        -> 핸드폰, AXIOS: <script src="https://cdn.jsdelivr.net/npm/axios@<x.x.x>/dist/axios.min.js"></script>
+-->
