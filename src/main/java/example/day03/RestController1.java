@@ -57,5 +57,7 @@ class ExamDto{String name; int age;}
     @ResponseBody린? 자바의타입 --> HTTP content-type 변환해 동일하게 사용/직렬화
     - String: text/plain;
     - 그 외: application/json
-
+    Map vs Dto
+    - Map: 클래스 만들지 않고 자료 담기, 메소드 없음
+    - Dto: 클래스를 만들고 그 안에 자료 담기, 메소드 있음
 */
