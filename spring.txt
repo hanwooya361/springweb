@@ -72,3 +72,19 @@ WAS(Web Application Server)
 IOC/DI
     @Autowired  // 의존성 주입
     @Component  // 싱글톤 대신에 @Component 이용해 IOC(자동 객체 관리) 규칙으로 스프링 컨테이너에 자동 빈(객체)등록
+
+REST API
+    @ResponseBody린? 자바의타입 --> HTTP content-type 변환해 동일하게 사용/직렬화
+    - String: text/plain;
+    - 그 외: application/json
+    
+    Map vs Dto
+    - Map: 클래스 만들지 않고 자료 담기, 메소드 없음
+    - Dto: 클래스를 만들고 그 안에 자료 담기, 메소드 있음
+    
+    @RestController // 3. 응답content-type을 application/json 자동 설정(@ResponseBody) + @Controller
+    // 활용: VIEW(HTML) -> @Controller , JSON(값) -> @RestController
+
+    @RequestParam란? 요청 content-type: form 또는 쿼리스트링의 매개변수 매핑/연결, 생략 가능
+
+    @RequestMapping("/day03")   // 클래스내 메소드들의 공통url 정의
