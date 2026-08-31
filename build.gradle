@@ -17,11 +17,14 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {
+dependencies {	// start.spring.io  의존성 추가
 	// 1. springboot
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	// 2. mysql
+	// 2. mysql jdbc
 	runtimeOnly 'com.mysql:mysql-connector-j'
+	// 3. 롬복
+	compileOnly 'org.projectlombok:lombok'
+ 	annotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

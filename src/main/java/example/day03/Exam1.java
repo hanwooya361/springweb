@@ -25,7 +25,7 @@ public class Exam1 {
             // 5. 동적로딩: 스프링 구조
             TestClass testClass = clazz.getDeclaredConstructor().newInstance();
             method.invoke(testClass);
-            
+
         }catch(Exception e){System.out.println(e);}
         
     }
@@ -40,9 +40,9 @@ public class Exam1 {
 // [4] 어노테이션 주입/사용: 
 class TestClass{
     @MyAnnotation(value="안녕", data = 10) // @내가만든어노테이션()
-    void method3(){System.out.println("하이3");}
+    public void method3(){System.out.println("하이3");}
     @MyAnnotation(value = "안녕2")
-    void method4(){System.out.println("하이4");}
+    public void method4(){System.out.println("하이4");}
 }
 
 class SuperClass{void method1(){}}  // - 상위클래스
