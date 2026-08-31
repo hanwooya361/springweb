@@ -28,7 +28,7 @@ public class RestController1 {
     @ResponseBody
     public String task2() {
         System.out.println("RestController1.task2()");
-        return "안녕";  // content-type: text/plain
+        return "안녕";  // content-type: text/plain;
     }
     
     // 3.
@@ -53,3 +53,9 @@ public class RestController1 {
 // dto
 @Data
 class ExamDto{String name; int age;}
+/*
+    @ResponseBody린? 자바의타입 --> HTTP content-type 변환해 동일하게 사용/직렬화
+    - String: text/plain;
+    - 그 외: application/json
+
+*/
