@@ -68,3 +68,7 @@ WAS(Web Application Server)
     @Data   // setter + getter + RequiredArgsConstructor + toString 묶음
     @EqualsAndHashCode  // 객체내 멤버변수의 값 모두 비교 메소드 (자동)생성
     @Builder    // 빌더 패턴 지원
+    
+IOC/DI
+    @Autowired  // 의존성 주입
+    @Component  // 싱글톤 대신에 @Component 이용해 IOC(자동 객체 관리) 규칙으로 스프링 컨테이너에 자동 빈(객체)등록
