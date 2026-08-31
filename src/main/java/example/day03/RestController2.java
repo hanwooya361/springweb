@@ -7,9 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.websocket.server.PathParam;
 
 // @Component   // 1. 스프링 컨테이너에 객체(빈) 등록
 // @Controller  // 2. HTTP 서블릿 지원 + @Component
@@ -51,4 +56,31 @@ public class RestController2 {
         System.out.println(examDto);
         return 9;
     }
+    // 6. http://127.0.0.1:8080/day03/task10/유재석/10
+    @GetMapping("/task10/{name}/{age}")
+    public int task10(@PathVariable(name="name") String name, @PathVariable(name="age") int age){
+        System.out.println(name); System.out.println(age);
+        return 10;
+    }
+    // 7. http://127.0.0.1:8080/day03/task11 , {"name" : "유재석", "age" : 10}
+    @PostMapping("/task11")
+    public int task11(@RequestBody ExamDto examDto){
+        System.out.println(examDto);
+        return 11;
+    }
 }
+/*
+    요청Requset --------> 
+                  HTTP
+                <--------   응답Response
+    * HTTP content-type: 전송하는 데이터의 타입 뜻
+    쿼리스트링이란? URL?매개변수명=값&매개변수명=값 
+        - GET/POST/PUT/DELETE 모두 사용 가능
+    경로구분자이란? url/값1/값2
+        - GET/POST/PUT/DELETE 모두 사용 가능
+    1. @RequestParam: 쿼리스트링 or content-type:'apllication/x-www-form-urlencoded'(기본값)
+    2. @ModelAttribute(생략가능): +DTO 매핑
+    3. @PathVariable: 경로구분자
+    4. @RequestBody: content-type:'apllication/json'
+        - POST/PUT 메소드만 body(본문-경로상의값 노출이 없다) 지원한다.
+*/
