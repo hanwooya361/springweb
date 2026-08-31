@@ -58,3 +58,13 @@ WAS(Web Application Server)
 리플렉션: 런타임환경에서의 클래스 구조를 읽고 객체 조작할 수 있는 기술
     1. new String(); [개발자가 직접]
     2. Class.forName(); [실행중에]
+
+롬복:
+    @NoArgsConstructor  // 매개변수 없는 생성자 (자동)생성
+    @AllArgsConstructor // 전체 매개변수 있는 생성자 (자동)생성
+    @RequiredArgsConstructor    // final 멤버변수의 생성자 (자동)생성
+    @Getter @Setter // private 멤버변수의 getter/setter 메소드 (자동)생성
+    @ToString       // 멤버변수 문자열 출력 메소드 (자동)생성
+    @Data   // setter + getter + RequiredArgsConstructor + toString 묶음
+    @EqualsAndHashCode  // 객체내 멤버변수의 값 모두 비교 메소드 (자동)생성
+    @Builder    // 빌더 패턴 지원
