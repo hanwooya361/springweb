@@ -52,3 +52,9 @@ WAS(Web Application Server)
         src->main->resouces->static->day02->index.html파일생성
         통신경로는 static 이하부터 작성
         통신경로: http://127.0.0.1:8080/day02/index.html
+
+어노테이션
+
+리플렉션: 런타임환경에서의 클래스 구조를 읽고 객체 조작할 수 있는 기술
+    1. new String(); [개발자가 직접]
+    2. Class.forName(); [실행중에]
