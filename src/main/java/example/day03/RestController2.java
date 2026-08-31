@@ -1,8 +1,12 @@
 package example.day03;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +38,17 @@ public class RestController2 {
     ){
         System.out.println(name); System.out.println(age); System.out.println(count);
         return 7;
+    }
+    // 4.
+    @DeleteMapping("/task8")
+    public int task8(@RequestParam Map<String,Object> map){ // Map이용시 한번에 쿼리스트링 받을수있음, @RequestParam로 받아야함
+        System.out.println(map);
+        return 8;
+    }
+    // 5.
+    @DeleteMapping("/task9")
+    public int tsak9(@ModelAttribute ExamDto examDto){  // DTO는 @ModelAttribute로 받아야함
+        System.out.println(examDto);
+        return 9;
     }
 }
