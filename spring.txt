@@ -187,6 +187,7 @@ JPA:
     @DeleteMapping: 
     @RequestParam: 
     @ModelAttribute: 
+    @PathVariable:
     @RequestBody: 
 
 5. JPA
