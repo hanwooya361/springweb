@@ -103,6 +103,17 @@ REST API
     4. @RequestBody: content-type:'apllication/json'
         - POST/PUT 메소드만 body(본문-경로상의값 노출이 없다) 지원한다.
 
+JPA: 
+    ORM: 객체와 테이블 중간에서 자동으로 매핑해주는 기술적 패러다임
+        - JPA 핵심 매커니즘: 영속성
+            - 영속성이란: 프로그램이 종료되어 메모리가 날아가도 데이터를 영구히 유지하는 성질
+                - 1차 캐시: 한 트랜젝션 내에 동일한 pk로 조회 시 db 거치지 않고 메모리에서 반환
+                - 더티 체킹: 엔티티 객체 값만 변경(setter)하면 update sql을 자동 전송(그래서 개발자가 update() 메소드를 별도 호출필요 x)
+
+    Spring mvc패턴
+        client -> controller -> service -> repository --entity--> db
+
+
 ********어노테이션 정리********
 1. 자바 
     @Override: 상위 클래스/인터페이스의 메서드를 재정의함을 명시 및 검증
@@ -137,6 +148,14 @@ REST API
     @PathVariable: URL 경로 자체에 포함된 식별자 값 추출
     @RequestBody: HTTP body(JSON,XML 등, POST/PUT에서 주로 사용) 데이터를 Java 객체로 저장
 
+5. JPA
+    @Service: 비지니스로직/트랜젝션 담당하는 클래스/객체(빈) 등록
+    @Repository: Entity 영속성 연결하는 인터페이스 (빈) 등록, extends JpaRepository<>
+    @Entity: DB에 매핑된 테이블의 레코드 모델 객체(빈) 등록
+    @Table(name="테이블명"): 매핑할 테이블명 지정, 생략시 클래스명으로 등록
+    @Id: primary key 지정
+    @Transactional: 여러개 SQL 하나의 (논리) 단위로 묶음 *JPA 수정 필수*
+
 
 1. 자바 
     @Override: 
@@ -170,13 +189,10 @@ REST API
     @ModelAttribute: 
     @RequestBody: 
 
-JPA: 
-
-ORM: 객체와 테이블 중간에서 자동으로 매핑해주는 기술적 패러다임
-    - JPA 핵심 매커니즘: 영속성
-        - 영속성이란: 프로그램이 종료되어 메모리가 날아가도 데이터를 영구히 유지하는 성질
-            - 1차 캐시: 한 트랜젝션 내에 동일한 pk로 조회 시 db 거치지 않고 메모리에서 반환
-            - 더티 체킹: 엔티티 객체 값만 변경(setter)하면 update sql을 자동 전송(그래서 개발자가 update() 메소드를 별도 호출필요 x)
-
-Spring mvc패턴
-    client -> controller -> service -> repository --entity--> db
+5. JPA
+    @Service: 
+    @Repository: 
+    @Entity:
+    @Table(name="테이블명"):
+    @Id: 
+    @Transactional: 

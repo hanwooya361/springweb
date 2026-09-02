@@ -44,7 +44,7 @@ public class ExamService {
     }
 
     // [4] 수정: 트랜젝션 필수!
-    @Transactional  // 트랜젝션이란? 여러개 sql 하나의 (논리)단위로 묶음
+    // @Transactional  // 트랜젝션이란? 여러개 sql 하나의 (논리)단위로 묶음
     // 만약 여러개 sql중 하나라도 sql오류이면 전체 rollback(취소) 모두 성공하면 commit(완료)
     // 활용처: 계좌이체(입금/출금), 회원가입포인트(회원가입/포인트지급): 2개 이상 기능을 하나로 묶음
     public boolean 수정(ExamEntity entity){
