@@ -122,6 +122,7 @@ REST API
     @SpringBootApplication: 톰켓 자동 구성, 컴포넌트 스캔, 설정 기능을 포함한 시작점 지정
     @Component: 스프링 빈(Bean, 객체)으로 등록
     @Autowired: 스프링 빈(객체) 의존성 자동 주입
+
 4. 스프링 HTTP
     @Controller: Spring MVC 컨트롤러 등록 (프론트엔드파일 반환용)
     @RestController: RESTful 웹 서비스 컨트롤러 등록(@Controller + @ResponseBody)
@@ -135,6 +136,7 @@ REST API
     @ModelAttribute: 요청 파라미터를 객체(DTO) 필드에 저장
     @PathVariable: URL 경로 자체에 포함된 식별자 값 추출
     @RequestBody: HTTP body(JSON,XML 등, POST/PUT에서 주로 사용) 데이터를 Java 객체로 저장
+
 
 1. 자바 
     @Override: 
@@ -175,3 +177,6 @@ ORM: 객체와 테이블 중간에서 자동으로 매핑해주는 기술적 패
         - 영속성이란: 프로그램이 종료되어 메모리가 날아가도 데이터를 영구히 유지하는 성질
             - 1차 캐시: 한 트랜젝션 내에 동일한 pk로 조회 시 db 거치지 않고 메모리에서 반환
             - 더티 체킹: 엔티티 객체 값만 변경(setter)하면 update sql을 자동 전송(그래서 개발자가 update() 메소드를 별도 호출필요 x)
+
+Spring mvc패턴
+    client -> controller -> service -> repository --entity--> db
