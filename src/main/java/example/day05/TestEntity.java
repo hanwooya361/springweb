@@ -8,30 +8,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Table(name="test")
-@Data @NoArgsConstructor  @AllArgsConstructor @Builder
-public class TestEntity{
+@Table( name = "test")
+@NoArgsConstructor@AllArgsConstructor@Builder
+@Getter@Setter@ToString
+public class TestEntity extends BaseTime {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer no;
-    @Column(name="name", nullable = false, length = 100, unique = true)    // 제약조건설정
-    private String name;    // 이름
-    
-    @Column(columnDefinition = "varchar(100) default '제품설명' not null")
-    private String desc;    // 설명
-    
-    @Column(insertable = true, updatable = true)
-    private Integer price;  // 가격
+    @Column( name="name" , nullable = false , length = 100 , unique = true  ) // 제약조건설정
+    private String name; // 이름
+    @Column( columnDefinition = "varchar(100) default '제품설명' not null ")
+    private String descri; // 설명
+    @Column( insertable = true , updatable = true )
+    private Integer price; // 가격
 }
 /*
-    - @Column(name="필드명"): 생략시 자동으로 멤버변수명지정    
-    - @Column(nullable = true/false): not null 부여    
-    - @Column(length = "문자열 길이~255")
-    - @Column(unique = true/false): 중복불가능/ 가능  
-    - @Column(columnDefinition = "SQL구문") 
-    - @Column(insertable = insert여부 , updatable = update여부) 
+    - @Column( name="필드명" ) : 생략시 자동으로 멤버변수명지정
+    - @Column( nullable = true/false ) : not null
+    - @Column( length = "문자열길이"  ) : 최대 255
+    - @Column( unique = true ) : 중복 불가능/가능
+    - @Column( columnDefinition = "SQL구문" )
+    - @Column( insertable = innser여부 , , updatable = update여부  )
 */

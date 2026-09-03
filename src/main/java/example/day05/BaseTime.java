@@ -11,15 +11,12 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
-@MappedSuperclass   // 엔티티 상속
-@EntityListeners(AuditingEntityListener.class)  // 엔티티의 생명주기 이벤트 감지 구현체
+@Getter @NoArgsConstructor
+@MappedSuperclass // 현재 클래스는 상속용 매핑
+@EntityListeners( AuditingEntityListener.class ) // 리스너 구현체 등록
 public class BaseTime {
-    // 1. 레코드 생성시점
-    @CreatedDate    // 현재 일시 자동 기록
+    @CreatedDate // 1. 레코드 생성시점
     private LocalDateTime createDate;
-    // 2. 레코드 변경시점
-    @LastModifiedDate   // 변경 일시 자동 변경
+    @LastModifiedDate // 2. 레코드 변경시점
     private LocalDateTime updateDate;
 }
