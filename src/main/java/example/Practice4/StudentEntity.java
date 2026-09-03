@@ -1,4 +1,4 @@
-package example.Practice3;
+package example.Practice4;
 
 public class StudentEntity {
     
