@@ -31,6 +31,16 @@ public class TestService {
         return testRepository.findById(tno);
     }
 
+    /* // 개별(교수님)
+    public TestEntity testDetail(int tno){
+        Optional<TestEntity> optional = testRepository.findById(tno);
+        if(optional.isPresent()){
+            TestEntity entity = optional.get();
+            return entity;
+        }
+        return null;
+    } */
+
     // 삭제
     public boolean testDelete(int tno){
         testRepository.deleteById(tno);

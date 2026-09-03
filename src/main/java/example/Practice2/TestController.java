@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/test")
 public class TestController {
+    // @Autowired private TestService testService;
     private final TestService testService;
 
     // 등록
@@ -37,6 +38,12 @@ public class TestController {
     public Optional<TestEntity> testDetail(int tno){
         return testService.testDetail(tno);
     } 
+
+    /* // 개별조회(교슈님)
+    @GetMapping("/detail")
+    public TestEntity testDetail(@RequestParam int tno){
+        return testService.testDetail(tno);
+    }  */
 
     // 삭제
     @DeleteMapping("")
