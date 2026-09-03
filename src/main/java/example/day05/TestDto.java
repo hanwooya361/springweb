@@ -35,6 +35,7 @@ public class TestDto {
     // static에는 this 없을까? 인스턴스없이 사용하는 메소드
     public static TestDto from(TestEntity testEntity){
         return TestDto.builder()    // 빌더ㅓ 시작, 순서/개수 상관없이 자유롭게 객체생성가능
+        .no(testEntity.getNo())
         .name(testEntity.getName())
         .descri(testEntity.getDescri())
         .price(testEntity.getPrice())

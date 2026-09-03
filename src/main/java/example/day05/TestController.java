@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Autowired private TestService testService;
 
-    // 1. 전체조회
+    // 1. 전체조회  
     @GetMapping("/test")
     public List<TestDto> 전체조회(){
         return testService.전체조회();
     }
 
-    // 2. 등록
+    // 2. 등록  {"name":"조현우", "descri":"펩시", "price":"3000"}
     @PostMapping("/test")
     public boolean 저장(@RequestBody TestDto testDto){
         return testService.저장(testDto);
     }
 
-    // 3. 수정
+    // 3. 수정  {"no":"1", "descri":"펩시", "price":"3000"}
     @PutMapping("/test")
     private boolean 수정(@RequestBody TestDto testDto){
         return testService.수정(testDto);
