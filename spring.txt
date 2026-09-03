@@ -158,6 +158,9 @@ JPA:
     3. @Id: 데이터베이스 테이블의 기본 키(Primary Key) 지정
     4. @Transactional: 트랜잭션 종료 시 엔티티 변경 감지를 통해 UPDATE 쿼리를 자동 실행 및 커밋 제어
 
+JPA: Entity
+    1. @Column: 
+
 
 1. 자바 
     @Override: 
