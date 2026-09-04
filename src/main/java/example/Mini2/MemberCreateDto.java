@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @AllArgsConstructor 
 @Builder 
-public class MemberDto {
+public class MemberCreateDto {
     private Integer member_id;
     private String login_id;
     private String password;
@@ -28,8 +28,8 @@ public class MemberDto {
         .build();
     }
 
-    public static MemberDto from(MemberEntity memberEntity){
-        return MemberDto.builder()
+    public static MemberCreateDto from(MemberEntity memberEntity){
+        return MemberCreateDto.builder()
         .member_id(memberEntity.getMember_id())
         .login_id(memberEntity.getLogin_id())
         .password(memberEntity.getPassword())
