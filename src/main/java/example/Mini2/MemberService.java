@@ -45,15 +45,20 @@ public class MemberService {
         }
         return false;
     }
-    // [4] 삭제
-        public boolean memberDelete( int memberId ){
-            Optional<MemberEntity>optional =
-            memberRepository.findById(memberId);
-            if(optional.isPresent() ){
-                memberRepository.delete(optional.get());
-                return true;
-            }
-            return false;
+    public MemberService(MemberRepository memberRepository, DonationRepository donationRepository) {
+        this.memberRepository = memberRepository;    }
+    // 삭제
+    @Transactional
+    public boolean memberDelete(int memberId) {
+        System.out.println("MemberService.memberDelete()");
+        System.out.println( memberId );
+        Optional<MemberEntity> optional = memberRepository.findById(memberId);
+        if (optional.isPresent()) {
+            MemberEntity memberEntity = optional.get();
+            memberRepository.delete(memberEntity);
+            return true;
         }
+        return false;
+    }
 
 }

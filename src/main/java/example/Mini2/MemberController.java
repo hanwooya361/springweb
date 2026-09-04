@@ -28,10 +28,9 @@ public class MemberController {
     public boolean Update( @RequestBody MemberUpdateDto memberDto ){
         return memberService.Update( memberDto );
     }
-    // 삭제
-     @DeleteMapping("/member")
-    public boolean memberDelete( @RequestParam(name = "memberId") int memberId){
+    // 삭제 http://localhost:8080/member?memberId=1
+    @DeleteMapping("/member")
+    public boolean memberDelete(@RequestParam(name = "memberId") int memberId) {
         return memberService.memberDelete(memberId);
     }
-
 }
