@@ -2,9 +2,20 @@ package example.Practice4;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import example.Practice4.model.dto.CourseDto;
+import example.Practice4.model.dto.EnrollDto;
+import example.Practice4.model.dto.StudentDto;
+import example.Practice4.model.entity.CourseEntity;
+import example.Practice4.model.entity.EnrollEntity;
+import example.Practice4.model.entity.StudentEntity;
+import example.Practice4.model.repository.CourseRepository;
+import example.Practice4.model.repository.EnrollRepository;
+import example.Practice4.model.repository.StudentRepository;
 
 @Service 
 public class CrService {
@@ -33,15 +44,28 @@ public class CrService {
         if(savedEnrollEntity.getEnrollId()>=1){return true;}
         return false;
     }
-    // 조회
-    public List<EnrollDto> eView(){
-        List<EnrollEntity> entities = enrollRepository.findAll();
-        List<EnrollDto> list = new ArrayList<>();
+    // 조회1
+    public EnrollEntity eView(int enrollId){
+        Optional<EnrollEntity> optional = enrollRepository.findById(enrollId);
+        if(optional.isPresent()){
+            EnrollEntity entity = optional.get();
+            return entity;
+        }
+        return null;
+    }
+    // 조회2
+    public List<CourseDto> findAll(){
+        List<CourseEntity> entities = courseRepository.findAll();
+        List<CourseDto> list = new ArrayList<>();
         entities.forEach((entity)->{
-            EnrollDto dto = EnrollDto.from(entity);
+            CourseDto dto = CourseDto.from(entity);
             list.add(dto);
         });
         return list;
     }
-
+    // 삭제
+    public boolean studentDelete(int studentId){
+        studentRepository.deleteById(studentId);
+        return true;
+    }
 }

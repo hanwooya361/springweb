@@ -9,7 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import example.Practice4.model.dto.CourseDto;
+import example.Practice4.model.dto.EnrollDto;
+import example.Practice4.model.dto.StudentDto;
+import example.Practice4.model.entity.EnrollEntity;
 
 @RestController 
 @RequestMapping("/school")
@@ -33,13 +39,17 @@ public class CrController {
     }
     // 조회1
     @GetMapping("/enrollid")
-    public List<EnrollDto> eView(){
-        return crService.eView();
+    public EnrollEntity eView(@RequestParam (name="enrollId") int enrollId){
+        return crService.eView(enrollId);
     }
     // 조회2
     @GetMapping("/courseid")
-    public 
+    public List<CourseDto> findAll(){
+        return crService.findAll();
+    }
     // 삭제
     @DeleteMapping("/studentid")
-    public 
+    public boolean studentDelete(@RequestParam (name="studentId")int studentId){
+        return crService.studentDelete(studentId);
+    }
 }
