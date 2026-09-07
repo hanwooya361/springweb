@@ -1,5 +1,6 @@
 package example.Practice4;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
@@ -29,16 +30,11 @@ public class EnrollEntity extends BaseTime{
         @Column(nullable = false, length = 10)
         private String status;
 
-        /* @OneToMany(mappedBy = "enrollEntity")
-        @ToString.Exclude
-        @Builder.Default
-        private List<> */
-
         @ManyToOne
-        @JoinColumn(name="courseId")
+        @JoinColumn(name="course_id")
         private CourseEntity courseEntity;
 
         @ManyToOne
-        @JoinColumn(name="studentId")
+        @JoinColumn(name="student_id")
         private StudentEntity studentEntity;
 }

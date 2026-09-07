@@ -3,8 +3,10 @@ package example.Practice4;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +28,7 @@ public class StudentEntity extends BaseTime{
         @Column(nullable = false, length = 20)
         private String studentName;
 
-        @OneToMany(mappedBy = "studentEntity")
+        @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
         @ToString.Exclude
         @Builder.Default
         private List<EnrollEntity> enrollList = new ArrayList<>();
