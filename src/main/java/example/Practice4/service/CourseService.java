@@ -1,4 +1,4 @@
-package example.Practice4;
+package example.Practice4.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,8 @@ import example.Practice4.model.repository.EnrollRepository;
 import example.Practice4.model.repository.StudentRepository;
 
 @Service 
-public class CrService {
+public class CourseService {
     @Autowired private CourseRepository courseRepository;
-    @Autowired private EnrollRepository enrollRepository;
-    @Autowired private StudentRepository studentRepository;
 
     // 등록1
     public boolean cAdd(CourseDto courseDto){
@@ -30,29 +28,7 @@ public class CrService {
         if(savedCourseEntity.getCourseId() >= 1){return true;}
         return false;
     }
-    // 등록2
-    public boolean sAdd(StudentDto studentDto){
-        StudentEntity studentEntity = studentDto.toEntity();
-        StudentEntity savedStudentEntity = studentRepository.save(studentEntity);
-        if(savedStudentEntity.getStudentId()>=1){return true;}
-        return false;
-    }
-    // 등록3
-    public boolean eAdd(EnrollDto enrollDto){
-        EnrollEntity enrollEntity = enrollDto.toEntity();
-        EnrollEntity savedEnrollEntity = enrollRepository.save(enrollEntity);
-        if(savedEnrollEntity.getEnrollId()>=1){return true;}
-        return false;
-    }
-    // 조회1
-    public EnrollEntity eView(int enrollId){
-        Optional<EnrollEntity> optional = enrollRepository.findById(enrollId);
-        if(optional.isPresent()){
-            EnrollEntity entity = optional.get();
-            return entity;
-        }
-        return null;
-    }
+    
     // 조회2
     public List<CourseDto> findAll(){
         List<CourseEntity> entities = courseRepository.findAll();
@@ -63,9 +39,5 @@ public class CrService {
         });
         return list;
     }
-    // 삭제
-    public boolean studentDelete(int studentId){
-        studentRepository.deleteById(studentId);
-        return true;
-    }
+    
 }
