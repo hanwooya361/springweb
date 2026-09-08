@@ -24,7 +24,7 @@ public class StudentController {
     }
     // 삭제
     @DeleteMapping("")
-    public boolean studentDelete(@RequestParam (name="studentId")int studentId){
+    public boolean studentDelete(@RequestParam (name="studentId")Integer studentId){
         return studentService.studentDelete(studentId);
     }
 }

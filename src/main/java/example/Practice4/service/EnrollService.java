@@ -6,28 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import example.Practice4.model.dto.EnrollDto;
+import example.Practice4.model.entity.CourseEntity;
 import example.Practice4.model.entity.EnrollEntity;
+import example.Practice4.model.entity.StudentEntity;
+import example.Practice4.model.repository.CourseRepository;
 import example.Practice4.model.repository.EnrollRepository;
+import example.Practice4.model.repository.StudentRepository;
 
 @Service 
 public class EnrollService {
-    @Autowired private EnrollRepository enrollRepository;
+     @Autowired private EnrollRepository enrollRepository;
+    @Autowired private StudentRepository studentRepository;
+    @Autowired private CourseRepository courseRepository;
 
-    // 등록3
-    public boolean eAdd(EnrollDto enrollDto){
+    // 1. 수강등록 : FK --> entity
+    public boolean eAdd( EnrollDto enrollDto ){
+        // 1. dto -> entity 
         EnrollEntity enrollEntity = enrollDto.toEntity();
-        EnrollEntity savedEnrollEntity = enrollRepository.save(enrollEntity);
-        if(savedEnrollEntity.getEnrollId()>=1){return true;}
+        // ** DTO내 FK 값을 ENTITY으로 변환  **
+        Optional<StudentEntity> optional1 =  studentRepository.findById( enrollDto.getStudentId() );
+        Optional<CourseEntity> optional2 = courseRepository.findById( enrollDto.getCourseId() );
+        if( optional1.isPresent() && optional2.isPresent() ){ // FK 2개가 모두 엔티티가 존재하면 
+            // 학생엔티티 꺼내서 enroll 엔티티에 대입 
+            StudentEntity studentEntity = optional1.get();
+            enrollEntity.setStudentEntity(studentEntity);
+            // 과정엔티티 꺼내서 enroll 엔티티에 대입
+            CourseEntity courseEntity = optional2.get();
+            enrollEntity.setCourseEntity(courseEntity);
+            // 2. fk entity 대입 후 entity save
+            EnrollEntity savedEntity = enrollRepository.save(enrollEntity);
+            if( savedEntity.getEnrollId() >= 1 ) return true;
+        }
         return false;
     }
 
     // 조회1
-    public EnrollEntity eView(int enrollId){
-        Optional<EnrollEntity> optional = enrollRepository.findById(enrollId);
-        if(optional.isPresent()){
-            EnrollEntity entity = optional.get();
-            return entity;
-        }
-        return null;
+    public EnrollDto eView(Integer enrollId){
+        // Optional<> 클래스는 null 예외검사 메소드 지원 .orElse(없을때자료), isPresent() 있으면 true/false
+        EnrollEntity  enrollEntity = enrollRepository.findById(enrollId).orElse(null);
+        return EnrollDto.from(enrollEntity);
     }
 }

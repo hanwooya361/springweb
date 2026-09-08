@@ -1,5 +1,7 @@
 package example.Practice4.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,15 @@ public class StudentService {
     }
 
     // 삭제
-    public boolean studentDelete(int studentId){
-        studentRepository.deleteById(studentId);
-        return true;
+    public boolean studentDelete(Integer studentId){
+        // 1. 학생번호로 학생엔티티 찾기
+        Optional<StudentEntity> optional = studentRepository.findById(studentId);
+        // 2. 만약 엔티티 존재하면
+        if(optional.isPresent()){
+            studentRepository.deleteById(studentId);
+            return true;
+        }
+        return false;
     }
+    
 }

@@ -23,13 +23,13 @@ import example.Practice4.service.CourseService;
 public class CourseController {
     @Autowired private CourseService CourseService;
 
-    // 등록1
+    // 과정 등록
     @PostMapping("")
     public boolean cAdd(@RequestBody CourseDto courseDto){
         return CourseService.cAdd(courseDto);
     }
     
-    // 조회2
+    // 과정 전체조회
     @GetMapping("")
     public List<CourseDto> findAll(){
         return CourseService.findAll();

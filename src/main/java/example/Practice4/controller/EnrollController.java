@@ -25,7 +25,7 @@ public class EnrollController {
 
     // 조회1
     @GetMapping("")
-    public EnrollEntity eView(@RequestParam (name="enrollId") int enrollId){
+    public EnrollDto eView(@RequestParam (name="enrollId") Integer enrollId){
         return enrollService.eView(enrollId);
     }
 }

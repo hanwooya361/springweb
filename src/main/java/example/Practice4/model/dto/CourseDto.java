@@ -19,7 +19,7 @@ public class CourseDto {
     private String courseName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    
+    @Builder.Default
     private List<StudentDto> studentDtos = new ArrayList<>();
 
     public CourseEntity toEntity(){
