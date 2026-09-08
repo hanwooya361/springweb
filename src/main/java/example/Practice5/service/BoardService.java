@@ -24,13 +24,13 @@ public class BoardService {
         return false;
     }
     // 조회
-    public List<BoardDto> boardDetail(BoardDto boardDto){
+    public List<BoardDto> boardDetail(){
         List<BoardEntity> boardEntities = boardRepository.findAll();
         List<BoardDto> boardDtos = new ArrayList<>();
         boardEntities.forEach((boardentity)->{
             BoardDto dto = BoardDto.from(boardentity);
-            boardentity.getCommentList().forEach((comment)->{
-                CommentDto commentDto = CommentDto.from(comment);
+            boardentity.getCommentList().forEach((commententity)->{
+                CommentDto commentDto = CommentDto.from(commententity);
                 dto.getComments().add(commentDto);
             });
             boardDtos.add(dto);

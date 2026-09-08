@@ -1,4 +1,4 @@
-package example.Practice5.controller;
+package example.test2.controller;
 
 import java.util.List;
 
@@ -11,27 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import example.Practice5.model.dto.BoardDto;
-import example.Practice5.service.BoardService;
+import example.test2.model.dto.BoardDto;
+import example.test2.service.BoardService;
 
 @RestController 
 @RequestMapping("/api/board")
 public class BoardController {
     @Autowired private BoardService boardService;
 
-    // 등록
-    @PostMapping("")
-    public boolean boardsave(@RequestBody BoardDto boardDto){
-        return boardService.boardsave(boardDto);
+    @PostMapping ("")
+    public boolean save(@RequestBody BoardDto boardDto){
+        return boardService.save(boardDto);
     }
-    // 조회
-    @GetMapping("")
-    public List<BoardDto> boardDetail(){
-        return boardService.boardDetail();
+
+    @GetMapping ("")
+    public List<BoardDto> findAll(){
+        return boardService.findAll();
     }
-    // 삭제
-    @DeleteMapping("")
-    public boolean boardDelete(@RequestParam(name="id") Integer boardId, @RequestParam(name="password") String password){
-        return boardService.boardDelete(boardId , password);
+
+    @DeleteMapping ("")
+    public boolean delete(@RequestParam (name="id") Integer Id, @RequestParam (name="password") String password){
+        return boardService.delete(Id, password);
     }
 }

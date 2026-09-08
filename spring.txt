@@ -204,3 +204,21 @@ JPA: Entity
     @Table(name="테이블명"):
     @Id: 
     @Transactional: 
+
+
+service 함수를 controller에서 호출하는 방법4
+1. 생성자 new
+2. @Autowired
+3. static일 경우 그냥 불러오기 void.달리기()
+4. 싱글톤(미니프로젝트2) getInstance
+
+class 달리기(){
+    void 달리기();
+}
+
+class main(){
+    //1. 인스턴스 o
+    //2.인스턴스 o
+    //3. 인스턴스 x
+    //4.인스턴스 o
+}
