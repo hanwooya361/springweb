@@ -20,7 +20,7 @@ public class BoardService {
     public boolean boardsave(BoardDto boardDto){
         BoardEntity boardEntity = boardDto.toEntity();
         BoardEntity savedEntity = boardRepository.save(boardEntity);
-        if(savedEntity.getBoardId() >= 1){return true;}
+        if(savedEntity.getId() >= 1){return true;}
         return false;
     }
     // 조회
@@ -31,25 +31,25 @@ public class BoardService {
             BoardDto dto = BoardDto.from(boardentity);
             boardentity.getCommentList().forEach((comment)->{
                 CommentDto commentDto = CommentDto.from(comment);
-                dto.getCommentDtos().add(commentDto);
+                dto.getComments().add(commentDto);
             });
             boardDtos.add(dto);
         });
         return boardDtos;
     }
 
-    // 삭제
-    public boolean boardDelete(Integer boardId, Integer password){
-        Optional<BoardEntity> optional = boardRepository.findById(boardId);
-        if(optional.isPresent()){
-            BoardEntity boardEntity = optional.get();
-            if(boardEntity.getPassword().equals(password)){
-                boardRepository.deleteById(boardId);
-                return true;
+        // 삭제
+        public boolean boardDelete(Integer boardId, String password){
+            Optional<BoardEntity> optional = boardRepository.findById(boardId);
+            if(optional.isPresent()){
+                BoardEntity boardEntity = optional.get();
+                if(boardEntity.getPassword().equals(password)){
+                    boardRepository.deleteById(boardId);
+                    return true;
+                }
+                return false;
             }
             return false;
         }
-        return false;
-    }
 
 }

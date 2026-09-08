@@ -31,7 +31,7 @@ public class BoardController {
     }
     // 삭제
     @DeleteMapping("")
-    public boolean boardDelete(@RequestParam(name="id") Integer boardId, @RequestParam(name="password") Integer password){
+    public boolean boardDelete(@RequestParam(name="id") Integer boardId, @RequestParam(name="password") String password){
         return boardService.boardDelete(boardId , password);
     }
 }

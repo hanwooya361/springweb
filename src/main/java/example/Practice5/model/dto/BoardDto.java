@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 public class BoardDto {
     private Integer id;
     private String author;
-    private Integer password;
+    private String password;
     private String content;
     private  LocalDateTime createdAt;
     private  LocalDateTime updateAt;
     @Builder.Default
-    private List<CommentDto> commentDtos = new ArrayList<>();
+    private List<CommentDto> comments = new ArrayList<>();
 
     public BoardEntity toEntity(){
         return BoardEntity.builder()
@@ -31,7 +31,7 @@ public class BoardDto {
 
     public static BoardDto from(BoardEntity boardEntity){
         return BoardDto.builder()
-        .id(boardEntity.getBoardId())
+        .id(boardEntity.getId())
         .author(boardEntity.getAuthor())
         .password(boardEntity.getPassword())
         .content(boardEntity.getContent())

@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor @AllArgsConstructor @Builder @Data 
 public class CommentDto {
-    private Integer commentId;
+    private Integer id;
     private String author;
-    private Integer password;
+    private String password;
     private String content;
     private  LocalDateTime createdAt;
     private  LocalDateTime updateAt;
@@ -29,13 +29,13 @@ public class CommentDto {
 
     public static CommentDto from(CommentEntity commentEntity){
         return CommentDto.builder()
-        .commentId(commentEntity.getCommentId())
+        .id(commentEntity.getId())
         .author(commentEntity.getAuthor())
         .password(commentEntity.getPassword())
         .content(commentEntity.getContent())
         .createdAt(commentEntity.getCreatedAt())
         .updateAt(commentEntity.getUpdatedAt())
-        .boardId(commentEntity.getBoardEntity().getBoardId())
+        .boardId(commentEntity.getBoardEntity().getId())
         .build();
     }
     

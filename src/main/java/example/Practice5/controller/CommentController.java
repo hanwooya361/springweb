@@ -12,7 +12,7 @@ import example.Practice5.model.dto.CommentDto;
 import example.Practice5.service.CommentService;
 
 @RestController 
-@RequestMapping("/api/board/comment")
+@RequestMapping("/api/board/comments")
 public class CommentController {
     @Autowired private CommentService commentService;
 
@@ -24,7 +24,7 @@ public class CommentController {
     // 삭제
     @DeleteMapping("")
     public boolean commentDelete(@RequestParam (name="commentId") Integer commentId
-                                ,@RequestParam (name="password") Integer password){
+                                ,@RequestParam (name="password") String password){
         return commentService.commentDelete(commentId, password);
     }
 }

@@ -25,11 +25,11 @@ import lombok.ToString;
 public class BoardEntity extends BaseTime{
     @Id 
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer boardId;
+    private Integer id;
     @Column
     private String author;
     @Column 
-    private Integer password;
+    private String password;
     @Column
     private String content;
     

@@ -30,7 +30,7 @@ public class CommentService {
         return false;
     }
     // 삭제
-    public boolean commentDelete(Integer commentId, Integer password){
+    public boolean commentDelete(Integer commentId, String password){
         Optional<CommentEntity> optional = commentRepository.findById(commentId);
         if(optional.isPresent()){
             CommentEntity commentEntity = optional.get();
