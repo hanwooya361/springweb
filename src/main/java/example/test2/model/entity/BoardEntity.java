@@ -35,6 +35,6 @@ public class BoardEntity extends BaseTime{
     @ToString.Exclude
     @Builder.Default
     private List<CommentEntity> commentList = new ArrayList<>();
-     
+    
 
 }
