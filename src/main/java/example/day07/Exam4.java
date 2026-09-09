@@ -49,9 +49,12 @@ public class Exam4 {
                     2. 인스턴스명::메소드명
                     3. 클래스명::new
                     JPA 서비스 구조: entity --> dto 변환
+                    // 1.
                     List<MemberDto> list = entityList.stream().map((entity)->{return MemberDto.from(entity);}).toList();
+                    // 2.
                     List<MemberDto> list = entityList.stream().map(MemberDto::from).toList();
             */
+
     }
 }
 class Student{
