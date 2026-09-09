@@ -25,6 +25,8 @@ public class BoardService {
     }
 
     public List<BoardDto> findAll(){
+        // return boardRepository.findAll().stream().map((entity)->{return BoardDto.from(entity);}).toList();
+        // return boardRepository.findAll().stream().map(BoardDto::from).toList();
         List<BoardEntity> boardEntities = boardRepository.findAll();
         List<BoardDto> boardDtos = new ArrayList<>();
         boardEntities.forEach((boardentity)->{

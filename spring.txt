@@ -206,6 +206,8 @@ JPA: Entity
     @Transactional: 
 
 
+
+---------------------------------------------------------------------------------------------------
 service 함수를 controller에서 호출하는 방법4
 1. 생성자 new
 2. @Autowired
@@ -222,3 +224,24 @@ class main(){
     //3. 인스턴스 x
     //4.인스턴스 o
 }
+
+ // 1. 인스턴스 생성해 메소드 호출(인스턴스 o)
+        TestService testService = new TestService();
+        int result1 = testService.plus(3, 10);
+
+        // 2. 싱글톤(인스턴스 o)
+        /* TestService testService2 = TestService.getInstance();
+        int result2 = testService2.plus(3, 5); */
+
+        // 3. 메소드가 static이면(인스턴스 x)
+        int result3 = TestService.plus2(3, 3);
+        
+        // 4. 스프링방식: @Service(자동인스턴스생성)(인스턴스 o)
+        /* @Autowired  private TestService testService;
+        int result4 = testService.plus(1, 2); */
+
+        // 인스턴스(주체) vs static(주체x)
+        // 메소드 안에서 주체가 필요없으면 static 가능, 주체가 필요한 경우 인스턴스 생성
+        // memberDto.toEntity() <-- 현재 dto 인스턴스가 엔티티로
+        // MemberDto.from(entity); <-- 변활할 엔티티를 매개변수로 전달
+---------------------------------------------------------------------------------------------------
