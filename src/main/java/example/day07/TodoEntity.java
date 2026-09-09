@@ -20,5 +20,4 @@ public class TodoEntity {
     private String title;
     private String conetne;
     private Boolean done;
-    
 }
