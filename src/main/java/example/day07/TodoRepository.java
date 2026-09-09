@@ -20,7 +20,7 @@ public interface TodoRepository extends JpaRepository<TodoEntity,Integer>{
     // 추상메소드 위에 @Query(value="직접SQL", nativeQuery = true)
     // SQL 문법내 매개변수 대입시 ? 대신에 : 매개변수명
     @Query(value="select * from todo where title= :title", nativeQuery = true) 
-    TodoEntity myquery1(String title);
+    TodoEntity myquery1(String title);  // 하니씩갖고있음 여러개 가져오려면 List<> 씌워줘야함, map도 마찬가지로 List<Map<>>
     @Query(value="select * from todo where title = :tittle and content = :content", nativeQuery = true)
     List<TodoEntity> myquery2(String title, String content);
     @Query(value="select * from todo where title = :title or content = :content", nativeQuery = true)
