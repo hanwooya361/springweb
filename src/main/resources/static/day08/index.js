@@ -92,3 +92,8 @@ const backLoad = async()=>{
     const reponse = await axios();
 }
 backLoad()
+
+function save(){
+    return true;
+}
+const save = ()=>{return true;}
