@@ -245,6 +245,9 @@ class main(){
         // memberDto.toEntity() <-- 현재 dto 인스턴스가 엔티티로
         // MemberDto.from(entity); <-- 변활할 엔티티를 매개변수로 전달
 ---------------------------------------------------------------------------------------------------
+
+cloudflared tunnel --url http://localhost:8080
+
 대용량 img 최적화를 어떻게 했나
 
 React
@@ -260,3 +263,10 @@ React
     
     JSX: HTML + JS 혼합문법 제공
     JSP: HTML+JAVA 혼합문법 제공
+
+    node.js: java처럼 js가 혼자서 실행가능한 환경(런타임)
+    npm: 스프링 gradle처럼 외부 라이브러리 설치/관리 프로그램
+        - node.js에 npm포함
+
+    cd.. : 폴더 뒤로가기
+    

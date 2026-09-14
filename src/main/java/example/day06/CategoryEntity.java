@@ -19,7 +19,7 @@ import lombok.ToString;
 public class CategoryEntity {
     @Id
     private Integer cno;
-    private String cname;
+    private String name;
     // 양방향참조, 비권장
     // @OneToMany(mappedBy = "매핑할멤버변수"), 하나가 다수에게 참조
     @OneToMany(mappedBy = "categoryEntity")  // 자바(JPA)에서만 매핑연결 
