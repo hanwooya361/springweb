@@ -15,7 +15,7 @@ public class ProductResponseDto {
     private String name;
     private Integer price;
     private Integer cno;
-    private String cName;
+    private String categoryname;
 
     public ProductsEntity toEntity() {
         return ProductsEntity.builder()
