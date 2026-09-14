@@ -33,5 +33,4 @@ public class CategoryEntity {
     @ToString.Exclude
     @Builder.Default
     private List<ProductsEntity> productList = new ArrayList<>();
-    
 }

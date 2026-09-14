@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.bind.annotation.CrossOrigin;
  	
 @SpringBootApplication // 스프링부트 실행
-@CrossOrigin(value = "http://localhost:5173")
 @EnableJpaAuditing
 public class AppStart {
     public static void main(String[] args) {

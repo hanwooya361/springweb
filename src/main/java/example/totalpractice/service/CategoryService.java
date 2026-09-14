@@ -17,8 +17,8 @@ public class CategoryService {
     public CategoryDto save(CategoryDto categoryDto){
         CategoryEntity categoryEntity = categoryDto.toEntity();
         CategoryEntity savedCategoryEntity = categoryRepository.save(categoryEntity);
-        if(savedCategoryEntity.getCno()>=1){return }
-        return false;
+        if(savedCategoryEntity.getCno() >= 1){ return categoryDto; }
+        return null;
     }
 
     public List<CategoryDto> findAll(){
@@ -28,7 +28,6 @@ public class CategoryService {
     public boolean delete(Integer cno){
         Optional<CategoryEntity> optional = categoryRepository.findById(cno);
         if(optional.isPresent()){
-            CategoryEntity categoryEntity = optional.get();
             categoryRepository.deleteById(cno);
             return true;
         }
