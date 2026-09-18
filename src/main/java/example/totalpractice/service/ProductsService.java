@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 
 import example.totalpractice.model.dto.ProductResponseDto;
 import example.totalpractice.model.entity.ProductsEntity;
+import example.totalpractice.model.repository.CategoryRepository;
 import example.totalpractice.model.repository.ProductsRepository;
 import example.totalpractice.model.dto.CategoryDto;
 import example.totalpractice.model.dto.ProductDto;
 import example.totalpractice.model.entity.CategoryEntity;
 
+
 @Service
 public class ProductsService {
     @Autowired
     private ProductsRepository productsRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     // 1. 제품 조회
     public List<ProductResponseDto> productFindAll() {
@@ -36,6 +40,11 @@ public class ProductsService {
     // 2. 제품 등록
     public ProductDto productSave(ProductDto productDto) {
         ProductsEntity productsEntity = productDto.toEntity();
+        Optional<CategoryEntity> optional = categoryRepository.findById(productDto.getCno());
+        if (optional.isPresent()) {
+            productsEntity.setCategoryEntity(optional.get());
+        } else
+            return null;
         ProductsEntity savedEntity = productsRepository.save(productsEntity);
         if (savedEntity.getBno() >= 1)
             return productDto;
@@ -49,7 +58,11 @@ public class ProductsService {
             ProductsEntity productsEntity = optional.get();
             productsEntity.setName(productDto.getName());
             productsEntity.setPrice(productDto.getPrice());
-            productsEntity.getCategoryEntity().setCno(productDto.getCno());
+            Optional<CategoryEntity> optional2 = categoryRepository.findById(productDto.getCno());
+            if (optional2.isPresent()) {
+                productsEntity.setCategoryEntity(optional2.get());
+            } else
+                return false;
             productsRepository.save(productsEntity);
             return true;
         }

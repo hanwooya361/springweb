@@ -23,7 +23,7 @@ public class ReviewController {
     @Autowired ReviewService reviewService;
 
     @GetMapping
-    public List<ReviewsDto> getreview(@RequestParam Integer bno) {
+    public List<ReviewsDto> getreview(@RequestParam(name="bno") Integer bno) {
         return reviewService.getreviews(bno);
     }
 

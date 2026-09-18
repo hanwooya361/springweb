@@ -1,5 +1,6 @@
 package example.totalpractice.model.dto;
 
+import example.totalpractice.model.entity.CategoryEntity;
 import example.totalpractice.model.entity.ProductsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,6 @@ public class ProductDto {
 
     public ProductsEntity toEntity() {
         return ProductsEntity.builder()
-                .bno(this.bno)
                 .name(this.name)
                 .price(this.price)
                 .build();

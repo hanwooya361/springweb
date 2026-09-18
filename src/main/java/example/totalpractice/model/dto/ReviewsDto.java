@@ -20,14 +20,14 @@ public class ReviewsDto {
                 .reviewer(this.reviewer)
                 .content(this.content)
                 .rating(this.rating)
-                .productEntity(productEntity)
+                .productsEntity(productEntity)
                 .build();
     }
 
     public static ReviewsDto from(ReviewsEntity entity) {
         return ReviewsDto.builder()
                 .rno(entity.getRno())
-                .bno(entity.getProductEntity().getBno())
+                .bno(entity.getProductsEntity().getBno())
                 .reviewer(entity.getReviewer())
                 .content(entity.getContent())
                 .rating(entity.getRating())

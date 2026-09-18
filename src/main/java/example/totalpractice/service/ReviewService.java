@@ -2,6 +2,7 @@ package example.totalpractice.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,24 @@ public class ReviewService {
     @Autowired private ProductsRepository productsRepository;
 
     public List<ReviewsDto> getreviews(Integer bno){
-    List<ReviewsEntity> reviewEntities = reviewRepository.findAll();
+    Optional<ProductsEntity> optional = productsRepository.findById(bno);
+    List<ReviewsDto> reviewDtos = new ArrayList<>();
+    if(optional.isPresent()){
+        ProductsEntity productsEntity = optional.get();
+        productsEntity.getReviewsList().forEach((entity)->{
+            reviewDtos.add(ReviewsDto.from(entity));
+        });
+    }
+    return reviewDtos; 
+    /* List<ReviewsEntity> reviewEntities = reviewRepository.findAll();
     List<ReviewsDto> reviewDtos = new ArrayList<>();
         reviewEntities.forEach((reviewEntity) -> {
-            if (reviewEntity.getProductEntity().getBno().equals(bno)) {
+            if (reviewEntity.getProductsEntity().getBno().equals(bno)) {
                 ReviewsDto reviewDto = ReviewsDto.from(reviewEntity);
                 reviewDtos.add(reviewDto);
             }
     });
-    return reviewDtos;
+    return reviewDtos;  */
 }
 
     public boolean createreview(ReviewsDto reviewDto) {

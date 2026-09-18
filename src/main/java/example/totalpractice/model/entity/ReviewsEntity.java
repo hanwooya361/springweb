@@ -24,5 +24,5 @@ public class ReviewsEntity {
 
     @ManyToOne 
     @JoinColumn ( name = "bno")
-    private ProductsEntity productEntity;
+    private ProductsEntity productsEntity;
 }
