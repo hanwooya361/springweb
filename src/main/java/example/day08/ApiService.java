@@ -73,7 +73,7 @@ public class ApiService {
             // 3. (대용량)파일 바이트로 읽어오기 .getInputStream().readAllBytes();
             byte[] bytes = resource.getInputStream().readAllBytes();
         // 4. 한글 인코딩, EUC-KR, CP949, UTF-8 등등
-            InputStreamReader reader = new InputStreamReader(new java.io.ByteArrayInputStream(bytes), Charset.forName("CP949"));
+            InputStreamReader reader = new InputStreamReader(new java.io.ByteArrayInputStream(bytes), Charset.forName("UTF-8"));
         // 5. OpenCSV 이용해 바이트들을 대입
         CSVReader csvReader = new CSVReaderBuilder(reader).build();
         // 6. 주로 첫행은 제목(행) 가져오기 (key/속성명 사용할 예정)
