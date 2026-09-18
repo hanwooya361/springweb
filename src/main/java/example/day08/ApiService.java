@@ -14,7 +14,7 @@ public class ApiService {
     private String serviceKey;
     // 2. WebClient 객체 빌더패턴 생성
     WebClient webClient = WebClient.builder().build();
-    // 1.
+    // [1]. 대구광역시 중구맛집 현황(json)
     public Map<String,Object> test1(){
         // 1. API 주소(공공데이터 신청한 API 요청 URL)
         String url = "https://api.odcloud.kr/api/15052602/v1/uddi:855807e2-fe8a-4e47-8a5a-ce1894e410d7_201909031553";
@@ -30,6 +30,19 @@ public class ApiService {
             return response;
         }
         
+    // [2]. 국립중앙의료원 전국 약국 정보 조회 시스템
+    public Map<String,Object> test2(){
+        // 1. API 주소(공공데이터 신청한 API 요청 URL)
+        String url = "https://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/getParmacyFullDown?";
+        url += "?serviceKey="+serviceKey;
+        url += "&pageNo="+1;
+        url += "&NumOfRows"+10;
+        // 3. WebClient 객체 이용한 api 요청 하고 응답받기
+        Map<String,Object> reponse = webClient.get().uri(url).retrieve()
+                .bodyToMono(Map.class)  // XML -> Map 직렬화/변환 실패
+                .block();
+                return reponse;
+    }
 }
 /*
     컬렉션프레임워크: List, Set, Map
