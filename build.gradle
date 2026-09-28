@@ -33,6 +33,8 @@ dependencies {	// start.spring.io  의존성 추가
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.2'
 	// 7. csv파싱
 	implementation 'com.opencsv:opencsv:5.12.0'
+	// 8. 비크립트
+	implementation 'org.springframework.security:spring-security-crypto'
 }
 
 tasks.named('test') {
