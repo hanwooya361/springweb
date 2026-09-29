@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")  // 도메인이 다른 경우 allowCredentials 이용한 쿠키/세션 유지
 public class MemberController {
     private final MemberService memberService;
+    private final JwtUtil jwtutil;
     // [1] 회원가입
     @PostMapping("/signup")
     public boolean signup(@RequestBody MemberDto memberDto){
@@ -40,7 +41,9 @@ public class MemberController {
         // 쿠키는 세션과 다르게 클라이언트에 저장되므로 회원번호만 저장(민감한 개인정보같은 정보들은 넣지 말자)
         // ResponseCookie cookie = ResponseCookie.from("쿠키명", "쿠키값").build();
         // *참고: 정수 -> 문자 타입변환 방법1) 정수+"" , 방법2) String.valueOf(정수)    ,   쿠키값은 String 타입임
-        ResponseCookie cookie = ResponseCookie.from("login_member", result.getMno()+"")
+        // 4. 토큰 발급 요청
+        String token = jwtutil.createToken(result.getMno());  // mno --> jwt
+        ResponseCookie cookie = ResponseCookie.from("login_member", token)
                                 .path("/")                  // 쿠키 사용할경로, "/" 도메인 전체
                                 .maxAge(Duration.ofDays(1)) // 쿠키 유효기간 설정
                                 .httpOnly(true)         // JS이용한 탈취 방지, XSS공격
