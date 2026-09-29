@@ -1,6 +1,7 @@
 package example.day10;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RestController 
 @RequestMapping("/api/member")
 @RequiredArgsConstructor 
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")  // 도메인이 다른 경우 allowCredentials 이용한 쿠키/세션 유지
 public class MemberController {
     private final MemberService memberService;
     // [1] 회원가입
@@ -48,13 +50,12 @@ public class MemberController {
         return memberService.getMyInfo(memberDto.getMno());
     }
 
-    // [4] 로그아웃 + 세션 (초기화)
-    @PostMapping("/logout")
-    public boolean logout(HttpSession session){
-        // *사용자에게 추가로 입력받을 값 없음
-        // 1. 세션 초기화
-        session.invalidate();   // 선택1) 세션 내 모든 정보 초기화
-        session.removeAttribute("login_member");    // 선택2) 세션 내 특정 정보 삭제
+     // [4] 로그아웃 + 세션 ( 초기화 )
+    @PostMapping ("/logout")
+    public boolean logout( HttpSession httpSession ){
+        //* 사용자에게 추가로 입력받을 값은 없다.
+        httpSession.invalidate(); // 선택1] 세션 내 모든 정보 초기화
+        // httpSession.removeAttribute("login_member"); // 선택2] 세션 내 특정 정보 삭제
         return true;
     }
 
