@@ -1,9 +1,7 @@
 package example.day11;
 
-import java.net.http.HttpHeaders;
 import java.time.Duration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseCookie;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,7 +39,7 @@ public class MemberController {
         // 쿠키는 세션과 다르게 클라이언트에 저장되므로 회원번호만 저장(민감한 개인정보같은 정보들은 넣지 말자)
         // ResponseCookie cookie = ResponseCookie.from("쿠키명", "쿠키값").build();
         // *참고: 정수 -> 문자 타입변환 방법1) 정수+"" , 방법2) String.valueOf(정수)    ,   쿠키값은 String 타입임
-        // 4. 토큰 발급 요청
+        // 4. ********* 토큰 발급 요청
         String token = jwtutil.createToken(result.getMno());  // mno --> jwt
         ResponseCookie cookie = ResponseCookie.from("login_member", token)
                                 .path("/")                  // 쿠키 사용할경로, "/" 도메인 전체
@@ -57,13 +55,15 @@ public class MemberController {
 
     // [3] 내 정보 조회 + 쿠키
     @GetMapping("/me")
-    public MemberDto getMyInfo(@CookieValue(value = "login_member", required = false)String loginMno){
+    public MemberDto getMyInfo(@CookieValue(value = "login_member", required = false)String token){
         // @CookieValue(value = "쿠키명")   요청한 브라우저의 쿠키 가져오기
         // 1. 만약 loginMno이 없다면 비로그인중
-        if(loginMno==null) return null;
+        if(token==null) return null;
+        // ****** 쿠키에 저장된 token 이용해 회원번호 찾기
+        Long loginMno = jwtutil.getMnoFromToken(token);
         // 2. 로그인중이면 서비스에게 회원정보 요청
         // 참고: 문자->정수 방법1) 기본타입.parse타입(문자)
-        return memberService.getMyInfo(Long.parseLong(loginMno));
+        return memberService.getMyInfo(loginMno);
     }
 
      // [4] 로그아웃 + 쿠키
