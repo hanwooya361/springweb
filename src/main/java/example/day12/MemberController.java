@@ -40,7 +40,7 @@ public class MemberController {
         // ResponseCookie cookie = ResponseCookie.from("쿠키명", "쿠키값").build();
         // *참고: 정수 -> 문자 타입변환 방법1) 정수+"" , 방법2) String.valueOf(정수)    ,   쿠키값은 String 타입임
         // 4. ********* 토큰 발급 요청
-        String token = jwtutil.createToken(result.getMno());  // mno --> jwt
+        String token = jwtutil.createAccessToken(result.getMno());  // mno --> jwt
         ResponseCookie cookie = ResponseCookie.from("login_member", token)
                                 .path("/")                  // 쿠키 사용할경로, "/" 도메인 전체
                                 .maxAge(Duration.ofDays(1)) // 쿠키 유효기간 설정
