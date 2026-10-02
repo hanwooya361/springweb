@@ -11,10 +11,12 @@ import java.util.List;
 @RequestMapping("/api/board")
 public class BoardController {
 
+    // Controller에서 DTO매핑시 @RequestBody 사용X  WHY? application/json형식이 아니여서 
+    // application/json --> @RequestBody, multipart/form-data --> @ModelAttribute or 생략
     private final BoardService boardService;
     // 등록
     @PostMapping("/write")
-    public boolean write( BoardDto dto) {
+    public boolean write(@ModelAttribute BoardDto dto) {
         return boardService.boardWrite(dto);
     }
 

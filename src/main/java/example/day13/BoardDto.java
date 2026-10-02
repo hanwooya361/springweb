@@ -1,13 +1,22 @@
 package example.day13;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class BoardDto {
     private Long id;
     private String title;
     private String content;
-    private String fileName;
+    // DTO란? 클라이언트가 요청/응답한 값들을 자바형식으로 구성
+    // 파일 업로드(파일은 문자가 아닌 바이트이므로 특정한 인터페이스) String X
+    private MultipartFile file; // 업로드/등록용
+    // private List<MultipartFile> files;   첨부파일여러개
+    // 파일 이름(업로드된 파일명)
+    private String fileName;    // 출력용
     private LocalDateTime createDate; // 프론트에 전달할 작성일자
+
     public BoardEntity toEntity() {
         return BoardEntity.builder()
                 .title(title)
