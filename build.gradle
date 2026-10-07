@@ -41,6 +41,8 @@ dependencies {	// start.spring.io  의존성 추가
    	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 	// 10. redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	// 11. websocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 
 tasks.named('test') {
