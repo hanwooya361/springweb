@@ -25,6 +25,10 @@ public class NoticeService {
     public SseEmitter subscribe(){
         SseEmitter emitter = new SseEmitter(); // 2-1: SseEmitter 객체 생성
         emitters.add(emitter);  // 2-2: 리스트에 저장
+
+        // 2-4: 안전하게 클라이언트와 연결이 비정상이면 리스트에서 삭제
+        emitter.onCompletion(()->emitters.remove(emitter));
+
         // 2-3: 생성된 객체를 반환
         return emitter;
     }
